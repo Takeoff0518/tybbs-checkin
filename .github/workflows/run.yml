@@ -1,0 +1,34 @@
+# 每天6:30执行
+
+name: Start
+
+on:
+   workflow_dispatch:
+   push:
+   gollum:
+   schedule:
+       - cron: '30 22 * * *'
+
+jobs:
+  sign_in:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run sign_in script
+      env:
+        BBS_COOKIE: ${{ secrets.BBS_COOKIE }}
+      run: |
+        python checkin.py
