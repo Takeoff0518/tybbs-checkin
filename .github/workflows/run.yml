@@ -1,6 +1,6 @@
 # 每天6:30执行
 
-name: Start
+name: Checkin
 
 on:
    workflow_dispatch:
@@ -10,7 +10,7 @@ on:
        - cron: '30 22 * * *'
 
 jobs:
-  sign_in:
+  check_in:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,5 +32,5 @@ jobs:
         BBS_COOKIE: ${{ secrets.BBS_COOKIE }}
       run: |
         python checkin.py > checkin_result.txt
-        echo checkin_result.txt
-        echo checkin_result.txt >> $GITHUB_STEP_SUMMARY
+        cat checkin_result.txt
+        cat checkin_result.txt >> $GITHUB_STEP_SUMMARY
