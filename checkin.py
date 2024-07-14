@@ -36,6 +36,7 @@ def check_in():
     else:
         print('签到失败！')
         print(response.status_code, response.text)
+        exit(1)
 
 if __name__ == '__main__':
     check_in()
