@@ -31,6 +31,4 @@ jobs:
       env:
         BBS_COOKIE: ${{ secrets.BBS_COOKIE }}
       run: |
-        python checkin.py > checkin_result.txt
-        cat checkin_result.txt
-        cat checkin_result.txt >> $GITHUB_STEP_SUMMARY
+        python checkin.py | tee >(cat > "$GITHUB_STEP_SUMMARY")

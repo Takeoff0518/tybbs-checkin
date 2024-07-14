@@ -32,10 +32,14 @@ def check_in():
 
     if response.status_code == 200:
         print('签到成功！')
+        print("```json")
         print(response.json()) # 打印出来看看awa？
+        print("```")
     else:
         print('签到失败！')
+        print("```json")
         print(response.status_code, response.text)
+        print("```")
         exit(1)
 
 if __name__ == '__main__':
